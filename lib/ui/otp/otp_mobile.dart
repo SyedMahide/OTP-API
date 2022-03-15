@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:otp_api/ui/otp/otp_sent.dart';
 
 class OtpMobile extends StatefulWidget {
   @override
@@ -99,6 +100,7 @@ class _OtpMobileState extends State<OtpMobile> {
                                       return null;
                                     },
                                     decoration: new InputDecoration(
+                                      floatingLabelBehavior: FloatingLabelBehavior.never,
                                       border: InputBorder.none,
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.only(topRight: Radius.circular(5.0), bottomRight: Radius.circular(5.0)),
@@ -136,7 +138,12 @@ class _OtpMobileState extends State<OtpMobile> {
                           child: MaterialButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                print("Sucessfull");
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => OtpSent()),
+                                );
+                              //  print("Sucessfull");
                                 return;
                               } else {
                                 print("Not worked");
