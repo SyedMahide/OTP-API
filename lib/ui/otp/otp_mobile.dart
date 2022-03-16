@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:otp_api/ui/otp/otp_sent.dart';
 
+import 'otp_pin.dart';
+
 class OtpMobile extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -11,9 +13,7 @@ class OtpMobile extends StatefulWidget {
 }
 
 class _OtpMobileState extends State<OtpMobile> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,8 @@ class _OtpMobileState extends State<OtpMobile> {
                       children: [
                         Container(
                           alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 60, left: 90, right: 90),
+                          margin: const EdgeInsets.only(
+                              top: 60, left: 90, right: 90),
                           child: const Image(
                             image: AssetImage("assets/first.png"),
                           ),
@@ -63,27 +64,32 @@ class _OtpMobileState extends State<OtpMobile> {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 40, left: 24,right: 24),
+                          margin: const EdgeInsets.only(
+                              top: 40, left: 24, right: 24),
                           child: Row(
                             children: [
                               Expanded(
-                               //   flex: 1,
+                                  //   flex: 1,
                                   child: Container(
-                                    decoration: BoxDecoration(
-
-                                      shape: BoxShape.rectangle,
-                                      border: Border.all(
-                                        color: const Color(0xffcc0c52),
-                                      ),
-                                      borderRadius: const BorderRadius.only(topLeft: Radius.circular(5.0), bottomLeft: const Radius.circular(5.0)),
-                                      color: const Color(0xffcc0c52),
-                                    ),
-                                    alignment: Alignment.center,
-                                    height: 60,
-                                    child: const Text("+88",style: TextStyle(color: Colors.white),),
-                                    //color: Colors.red,
-                                    // margin: EdgeInsets.only(left: 5,right: 5),
-                                  )),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  border: Border.all(
+                                    color: const Color(0xffcc0c52),
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(5.0),
+                                      bottomLeft: const Radius.circular(5.0)),
+                                  color: const Color(0xffcc0c52),
+                                ),
+                                alignment: Alignment.center,
+                                height: 60,
+                                child: const Text(
+                                  "+88",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                //color: Colors.red,
+                                // margin: EdgeInsets.only(left: 5,right: 5),
+                              )),
                               Expanded(
                                 flex: 5,
                                 child: Container(
@@ -100,15 +106,22 @@ class _OtpMobileState extends State<OtpMobile> {
                                       return null;
                                     },
                                     decoration: const InputDecoration(
-                                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never,
                                       border: InputBorder.none,
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.only(topRight: Radius.circular(5.0), bottomRight: Radius.circular(5.0)),
-                                        borderSide: BorderSide(color: Color(0xffcc0c52)),
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5.0),
+                                            bottomRight: Radius.circular(5.0)),
+                                        borderSide: BorderSide(
+                                            color: Color(0xffcc0c52)),
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.only(topRight: Radius.circular(5.0), bottomRight: Radius.circular(5.0)),
-                                        borderSide: BorderSide(color: Color(0xffcc0c52)),
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5.0),
+                                            bottomRight: Radius.circular(5.0)),
+                                        borderSide: BorderSide(
+                                            color: Color(0xffcc0c52)),
                                       ),
                                       labelText: "Enter Mobile Number",
                                       labelStyle: TextStyle(
@@ -124,13 +137,11 @@ class _OtpMobileState extends State<OtpMobile> {
                                       LengthLimitingTextInputFormatter(11),
                                     ],
                                   ),
-                                 // margin: EdgeInsets.only(left: 5, right: 5),
+                                  // margin: EdgeInsets.only(left: 5, right: 5),
                                 ),
                               ),
-
                             ],
                           ),
-
                         ),
                         Container(
                           alignment: Alignment.center,
@@ -141,9 +152,11 @@ class _OtpMobileState extends State<OtpMobile> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => OtpSent()),
+                                      builder: (context) =>
+                                          PinCodeVerificationScreen(
+                                              "+8801686352645")),
                                 );
-                              //  print("Sucessfull");
+                                //  print("Sucessfull");
                                 return;
                               } else {
                                 print("Not worked");
@@ -156,7 +169,8 @@ class _OtpMobileState extends State<OtpMobile> {
                               alignment: Alignment.center,
                               height: 35,
                               width: 150,
-                              margin: const EdgeInsets.only(top: 8, bottom: 8,left: 70, right: 70),
+                              margin: const EdgeInsets.only(
+                                  top: 8, bottom: 8, left: 70, right: 70),
                               child: const Text(
                                 "GET OTP",
                                 style: TextStyle(
@@ -174,8 +188,11 @@ class _OtpMobileState extends State<OtpMobile> {
                           alignment: Alignment.center,
                           margin: const EdgeInsets.only(top: 20),
                           child: MaterialButton(
-                            onPressed: (){},
-                            child: const Text("Login with gmail",style: TextStyle(color: Colors.black),),
+                            onPressed: () {},
+                            child: const Text(
+                              "Login with gmail",
+                              style: TextStyle(color: Colors.black),
+                            ),
                           ),
                         ),
                       ]),
