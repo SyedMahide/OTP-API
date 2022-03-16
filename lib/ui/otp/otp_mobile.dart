@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:otp_api/ui/otp/otp_sent.dart';
@@ -19,7 +19,7 @@ class _OtpMobileState extends State<OtpMobile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("OtpApi"),
+          title: const Text("OtpApi"),
         ),
         body: SingleChildScrollView(
             child: Container(
@@ -31,15 +31,15 @@ class _OtpMobileState extends State<OtpMobile> {
                       children: [
                         Container(
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(top: 60, left: 90, right: 90),
-                          child: Image(
+                          margin: const EdgeInsets.only(top: 60, left: 90, right: 90),
+                          child: const Image(
                             image: AssetImage("assets/first.png"),
                           ),
                         ),
                         Container(
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(top: 20),
-                          child: Text(
+                          margin: const EdgeInsets.only(top: 20),
+                          child: const Text(
                             "OTP Verification",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 22),
@@ -47,8 +47,8 @@ class _OtpMobileState extends State<OtpMobile> {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(top: 20),
-                          child: Text(
+                          margin: const EdgeInsets.only(top: 20),
+                          child: const Text(
                             "We will sent you a One Time Password",
                             style: TextStyle(fontSize: 16, color: Colors.grey),
                           ),
@@ -56,14 +56,14 @@ class _OtpMobileState extends State<OtpMobile> {
                         Container(
                           alignment: Alignment.center,
                           // margin: EdgeInsets.only(top: 5),
-                          child: Text(
+                          child: const Text(
                             "On this mobile number",
                             style: TextStyle(fontSize: 16, color: Colors.grey),
                           ),
                         ),
                         Container(
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(top: 40, left: 24,right: 24),
+                          margin: const EdgeInsets.only(top: 40, left: 24,right: 24),
                           child: Row(
                             children: [
                               Expanded(
@@ -73,14 +73,14 @@ class _OtpMobileState extends State<OtpMobile> {
 
                                       shape: BoxShape.rectangle,
                                       border: Border.all(
-                                        color: Color(0xffcc0c52),
+                                        color: const Color(0xffcc0c52),
                                       ),
-                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(5.0), bottomLeft: Radius.circular(5.0)),
-                                      color: Color(0xffcc0c52),
+                                      borderRadius: const BorderRadius.only(topLeft: Radius.circular(5.0), bottomLeft: const Radius.circular(5.0)),
+                                      color: const Color(0xffcc0c52),
                                     ),
                                     alignment: Alignment.center,
                                     height: 60,
-                                    child: Text("+88",style: TextStyle(color: Colors.white),),
+                                    child: const Text("+88",style: TextStyle(color: Colors.white),),
                                     //color: Colors.red,
                                     // margin: EdgeInsets.only(left: 5,right: 5),
                                   )),
@@ -99,7 +99,7 @@ class _OtpMobileState extends State<OtpMobile> {
                                       }
                                       return null;
                                     },
-                                    decoration: new InputDecoration(
+                                    decoration: const InputDecoration(
                                       floatingLabelBehavior: FloatingLabelBehavior.never,
                                       border: InputBorder.none,
                                       enabledBorder: OutlineInputBorder(
@@ -121,7 +121,7 @@ class _OtpMobileState extends State<OtpMobile> {
                                     ),
                                     keyboardType: TextInputType.phone,
                                     inputFormatters: [
-                                      new LengthLimitingTextInputFormatter(11),
+                                      LengthLimitingTextInputFormatter(11),
                                     ],
                                   ),
                                  // margin: EdgeInsets.only(left: 5, right: 5),
@@ -134,7 +134,7 @@ class _OtpMobileState extends State<OtpMobile> {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(top: 40),
+                          margin: const EdgeInsets.only(top: 40),
                           child: MaterialButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
@@ -149,15 +149,15 @@ class _OtpMobileState extends State<OtpMobile> {
                                 print("Not worked");
                               }
                             },
-                            color: Color(0xffcc0c52),
+                            color: const Color(0xffcc0c52),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             child: Container(
                               alignment: Alignment.center,
                               height: 35,
                               width: 150,
-                              margin: EdgeInsets.only(top: 8, bottom: 8,left: 70, right: 70),
-                              child: Text(
+                              margin: const EdgeInsets.only(top: 8, bottom: 8,left: 70, right: 70),
+                              child: const Text(
                                 "GET OTP",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -172,10 +172,10 @@ class _OtpMobileState extends State<OtpMobile> {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(top: 20),
+                          margin: const EdgeInsets.only(top: 20),
                           child: MaterialButton(
                             onPressed: (){},
-                            child: Text("Login with gmail",style: TextStyle(color: Colors.black),),
+                            child: const Text("Login with gmail",style: TextStyle(color: Colors.black),),
                           ),
                         ),
                       ]),

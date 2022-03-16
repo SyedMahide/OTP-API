@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/rendering.dart';
 
 class DetailInfo extends StatelessWidget {
   @override
@@ -122,7 +120,7 @@ class _DetailInfoPageState extends State<DetailInfoPage> {
                               height: 60,
                               child: const Icon(
                                 Icons.wheelchair_pickup_sharp,
-                                color: const Color(0xffcc0c52),
+                                color: Color(0xffcc0c52),
                               ))),
                       Expanded(
                         flex: 5,
@@ -135,7 +133,7 @@ class _DetailInfoPageState extends State<DetailInfoPage> {
                               ),
                               borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(5.0),
-                                  bottomRight: const Radius.circular(5.0)),
+                                  bottomRight: Radius.circular(5.0)),
                               // color: Color(0xffcc0c52),
                             ),
                             height: 60,
