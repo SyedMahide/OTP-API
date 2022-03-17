@@ -48,18 +48,25 @@ class _OtpMobileState extends State<OtpMobile> {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 20),
-                          child: const Text(
-                            "We will sent you a One Time Password",
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          // margin: EdgeInsets.only(top: 5),
-                          child: const Text(
-                            "On this mobile number",
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          margin: const EdgeInsets.only(top: 20,left: 30,right: 30),
+                          child: RichText(
+                            text: const TextSpan(
+                                text: "We will sent you a ",
+
+                                children: [
+                                  TextSpan(
+                                    text: "One Time Password ",
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                  TextSpan(
+                                    text: "on this mobile number",
+                                  )
+                                ],
+                                style: TextStyle(color: Colors.black54, fontSize: 16)),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         Container(
@@ -82,7 +89,7 @@ class _OtpMobileState extends State<OtpMobile> {
                                   color: const Color(0xffcc0c52),
                                 ),
                                 alignment: Alignment.center,
-                                height: 60,
+                                height: 50,
                                 child: const Text(
                                   "+88",
                                   style: TextStyle(color: Colors.white),
@@ -93,6 +100,7 @@ class _OtpMobileState extends State<OtpMobile> {
                               Expanded(
                                 flex: 5,
                                 child: Container(
+                                  height: 50,
                                   alignment: Alignment.center,
                                   child: TextFormField(
                                     validator: (String? value) {
@@ -108,7 +116,14 @@ class _OtpMobileState extends State<OtpMobile> {
                                     decoration: const InputDecoration(
                                       floatingLabelBehavior:
                                           FloatingLabelBehavior.never,
-                                      border: InputBorder.none,
+                                     //
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5.0),
+                                            bottomRight: Radius.circular(5.0)),
+                                        borderSide: BorderSide(
+                                            color: Color(0xffcc0c52)),
+                                      ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(5.0),
@@ -116,6 +131,7 @@ class _OtpMobileState extends State<OtpMobile> {
                                         borderSide: BorderSide(
                                             color: Color(0xffcc0c52)),
                                       ),
+
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(5.0),
@@ -130,12 +146,14 @@ class _OtpMobileState extends State<OtpMobile> {
                                         fontSize: 12,
                                         fontWeight: FontWeight.w400,
                                         fontStyle: FontStyle.normal,
+
                                       ),
                                     ),
                                     keyboardType: TextInputType.phone,
                                     inputFormatters: [
                                       LengthLimitingTextInputFormatter(11),
                                     ],
+
                                   ),
                                   // margin: EdgeInsets.only(left: 5, right: 5),
                                 ),
@@ -144,6 +162,7 @@ class _OtpMobileState extends State<OtpMobile> {
                           ),
                         ),
                         Container(
+                          height: 50,
                           alignment: Alignment.center,
                           margin: const EdgeInsets.only(top: 40),
                           child: MaterialButton(
@@ -153,7 +172,7 @@ class _OtpMobileState extends State<OtpMobile> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          PinCodeVerificationScreen(
+                                          const PinCodeVerificationScreen(
                                               "+8801686352645")),
                                 );
                                 //  print("Sucessfull");
@@ -170,7 +189,7 @@ class _OtpMobileState extends State<OtpMobile> {
                               height: 35,
                               width: 150,
                               margin: const EdgeInsets.only(
-                                  top: 8, bottom: 8, left: 70, right: 70),
+                                  top: 8, bottom: 8, left: 30, right: 30),
                               child: const Text(
                                 "GET OTP",
                                 style: TextStyle(

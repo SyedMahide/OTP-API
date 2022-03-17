@@ -349,10 +349,10 @@ class _OtpSentPageState extends State<OtpSentPage>{
               _inputNumberFourController.text;
           print("Otp verified " + inputValues);
           if (inputValues.trim() == otp) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DetailInfo()),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => DetailInfo()),
+            // );
           } else {
             print("otp does not match");
             // otp does not match

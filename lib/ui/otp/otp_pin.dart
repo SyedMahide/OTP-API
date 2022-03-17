@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:otp_api/ui/otp/detailsInfo_screen.dart';
 
 import '../../colour/my_colour.dart';
 
@@ -82,18 +83,15 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                     const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
                 child: RichText(
                   text: const TextSpan(
-                      text: "we will send you an ",
+                      text: "Enter the OTP sent to ",
                       children: [
                         TextSpan(
-                          text: "One Time Password ",
+                          text: " ",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.grey,
                               fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
-                        TextSpan(
-                          text: "on this mobile number",
-                        )
                       ],
                       style: TextStyle(color: Colors.black54, fontSize: 15)),
                   textAlign: TextAlign.center,
@@ -110,7 +108,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                     child: PinCodeTextField(
                       appContext: context,
                       pastedTextStyle: TextStyle(
-                        color: Colors.green.shade600,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                       length: 6,
@@ -123,7 +121,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       animationType: AnimationType.fade,
                       validator: (v) {
                         if (v!.length < 3) {
-                          return "I'm from validator";
+                          return "";
                         } else {
                           return null;
                         }
@@ -137,7 +135,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       ),
                       cursorColor: Colors.black,
                       animationDuration: Duration(milliseconds: 300),
-                      enableActiveFill: true,
+                      enableActiveFill: false,
                       errorAnimationController: errorController,
                       controller: textEditingController,
                       keyboardType: TextInputType.number,
@@ -216,18 +214,24 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                             .shake); // Triggering error shake animation
                         setState(() => hasError = true);
                       } else {
-                        setState(
-                          () {
-                            hasError = false;
-                            snackBar("OTP Verified!!");
-                          },
-                        );
+                        setState(() {
+                          hasError = false;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailInfo()),
+                          );
+                        }
+                            //snackBar("OTP Verified!!");
+
+                            );
                       }
                     },
                     child: Center(
                         child: Text(
                       "VERIFY & PROCEED".toUpperCase(),
                       style: const TextStyle(
+                          decoration: TextDecoration.underline,
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
@@ -235,43 +239,24 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                   ),
                 ),
                 decoration: BoxDecoration(
-                    color: Colors.green.shade300,
+                    color: MyColors.primaryColor,
                     borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
-                          color: Colors.green.shade200,
-                          offset: Offset(1, -2),
-                          blurRadius: 5),
+                        color: MyColors.primaryColor,
+                        offset: Offset(1, -2),
+                        // blurRadius: 5
+                      ),
                       BoxShadow(
-                          color: Colors.green.shade200,
-                          offset: Offset(-1, 2),
-                          blurRadius: 5)
+                        color: MyColors.primaryColor,
+                        offset: Offset(-1, 2),
+                        // blurRadius: 5
+                      )
                     ]),
               ),
               const SizedBox(
                 height: 16,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Flexible(
-                      child: TextButton(
-                    child: const Text("Clear"),
-                    onPressed: () {
-                      textEditingController.clear();
-                    },
-                  )),
-                  Flexible(
-                      child: TextButton(
-                    child: const Text("Set Text"),
-                    onPressed: () {
-                      setState(() {
-                        textEditingController.text = "123456";
-                      });
-                    },
-                  )),
-                ],
-              )
             ],
           ),
         ),
