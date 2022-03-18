@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:otp_api/ui/otp/detailsInfo_screen.dart';
+import 'package:otp_api/ui/profile_detail_insertion/user_detail_insertion.dart';
 class OtpSent extends StatelessWidget {
+  static const routeName = '/otpPinAlt';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

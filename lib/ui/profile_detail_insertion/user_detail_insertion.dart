@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DetailInfo extends StatelessWidget {
+  static const routeName = '/profileDetailInfoInsert';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

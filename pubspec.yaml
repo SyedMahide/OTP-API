@@ -26,6 +26,14 @@ flutter:
   assets:
     - assets/first.png
     - assets/second.png
+
+
+
+  fonts:
+    - family: Constantia
+      fonts:
+        - asset: assets/fonts/Constantia-constan.ttf
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

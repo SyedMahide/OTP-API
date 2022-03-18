@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class MyColors{
-  static const Color primaryColor=const Color(0xffcc0c52);
+class CustomColors{
+  static const Color primaryColor=const Color(0xFFCC0C52);
+  static const Color accentColor=const Color(0xFF6C63FF);
 }

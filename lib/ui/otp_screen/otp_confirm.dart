@@ -1,27 +1,28 @@
 import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:otp_api/ui/otp/detailsInfo_screen.dart';
+import 'package:otp_api/ui/profile_detail_insertion/user_detail_insertion.dart';
 
 import '../../colour/my_colour.dart';
 
 class PinCodeVerificationScreen extends StatefulWidget {
   final String? phoneNumber;
-
-  const PinCodeVerificationScreen(this.phoneNumber);
+  static const routeName = '/otpPinConfirm';
+  PinCodeVerificationScreen(this.phoneNumber);
 
   @override
   _PinCodeVerificationScreenState createState() =>
-      _PinCodeVerificationScreenState();
+      _PinCodeVerificationScreenState(phoneNumber!);
 }
 
 class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
   TextEditingController textEditingController = TextEditingController();
+  final String phoneNumber;
+  _PinCodeVerificationScreenState(this.phoneNumber)
+      : super();
 
-  // ..text = "123456";
-
-  // ignore: close_sinks
   StreamController<ErrorAnimationType>? errorController;
 
   bool hasError = false;
@@ -53,10 +54,10 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: () {},
-        child: SizedBox(
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: ListView(
@@ -82,18 +83,18 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
                 child: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                       text: "Enter the OTP sent to ",
                       children: [
                         TextSpan(
-                          text: " ",
-                          style: TextStyle(
+                          text: phoneNumber,
+                          style: const TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ],
-                      style: TextStyle(color: Colors.black54, fontSize: 15)),
+                      style: const TextStyle(color: Colors.black54, fontSize: 15)),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -107,7 +108,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                         vertical: 8.0, horizontal: 30),
                     child: PinCodeTextField(
                       appContext: context,
-                      pastedTextStyle: TextStyle(
+                      pastedTextStyle: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -131,6 +132,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                         borderRadius: BorderRadius.circular(5),
                         fieldHeight: 50,
                         fieldWidth: 40,
+                        inactiveColor: CustomColors.primaryColor,
                         activeFillColor: Colors.white,
                       ),
                       cursorColor: Colors.black,
@@ -139,6 +141,10 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       errorAnimationController: errorController,
                       controller: textEditingController,
                       keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        FilteringTextInputFormatter
+                            .digitsOnly
+                      ],
                       boxShadows: const [
                         BoxShadow(
                           offset: Offset(0, 1),
@@ -191,7 +197,8 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       child: const Text(
                         "RESEND OTP",
                         style: TextStyle(
-                            color: MyColors.primaryColor,
+                            decoration: TextDecoration.underline,
+                            color: CustomColors.primaryColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16),
                       ))
@@ -200,7 +207,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
               const SizedBox(
                 height: 14,
               ),
-              Container(
+            /*  Container(
                 margin:
                     const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
                 child: ButtonTheme(
@@ -239,20 +246,71 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                   ),
                 ),
                 decoration: BoxDecoration(
-                    color: MyColors.primaryColor,
+                    color: CustomColors.primaryColor,
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: const [
                       BoxShadow(
-                        color: MyColors.primaryColor,
+                        color: CustomColors.primaryColor,
                         offset: Offset(1, -2),
                         // blurRadius: 5
                       ),
                       BoxShadow(
-                        color: MyColors.primaryColor,
+                        color: CustomColors.primaryColor,
                         offset: Offset(-1, 2),
                         // blurRadius: 5
                       )
                     ]),
+              ),*/
+              Container(
+                margin:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
+                width: MediaQuery.of(context).size.width - 30,
+                height: 45,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: CustomColors.primaryColor
+                          .withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      offset: const Offset(
+                          0, 3), // changes position of shadow
+                    ),
+                  ],
+
+                  // border: Border.all(
+                  //     color: CustomColors.primaryColor, width: 3),
+                ),
+                child: MaterialButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0)),
+                  color: CustomColors.primaryColor,
+                  onPressed: () {
+                    formKey.currentState!.validate();
+                    // conditions for validating
+                    if (currentText.length != 6 || currentText != "123456") {
+                      errorController!.add(ErrorAnimationType
+                          .shake); // Triggering error shake animation
+                      setState(() => hasError = true);
+                    } else {
+                      setState(() {
+                        hasError = false;
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailInfo()),
+                        );
+                      }
+                        //snackBar("OTP Verified!!");
+
+                      );
+                    }
+                  },
+                  child: const Text(
+                    "VERIFY & PROCEED",
+                    style: TextStyle(color: Colors.white,decoration: TextDecoration.underline),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 16,
